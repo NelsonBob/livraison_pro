@@ -3,9 +3,9 @@ package com.example.livraison.use_case.colis;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.livraison.use_case.domain.Client;
-import com.example.livraison.use_case.domain.Colis;
-import com.example.livraison.use_case.domain.Livreur;
+import com.example.livraison.domain.Client;
+import com.example.livraison.domain.Colis;
+import com.example.livraison.domain.Livreur;
 import com.example.livraison.use_case.exeption.ClientNotFoundException;
 import com.example.livraison.use_case.exeption.ColisAlreadyDeliveredException;
 import com.example.livraison.use_case.exeption.ColisNotFoundException;
@@ -29,7 +29,7 @@ public class LivraisonColis {
         ColisRepository colisRepository = new ColisRepository();
         for (Colis colis : listColis) {
             livreur.scannerColis(colis);
-            colisRepository.saveColis(colis);
+            colisRepository.saveColis(colis);            
         }
 
         List<Colis> colisScannes = colisRepository.getColisALivrer();
@@ -44,10 +44,15 @@ public class LivraisonColis {
         // Le livreur vérifie le code et livre les colis, puis envoie une notification au client
         for (Colis colis : colisScannes) {
             Client client = ClientRepository.getClientById(colis.getClientId());
-            String codeValidationClient = client.getCode(colis.getId());
+            
+            /*String codeValidationClient = colisRepository.getCodeByColisAndClientId(colis.getId(), client.getId());
+
+        
             if (codeValidationClient.equals(colis.getCode())) {
                 livreur.livrerColis(colis, client);
             }
+        }*/
+            livreur.livrerColis(colis, client);
         }
 
         return colisRepository.getColisLivre();

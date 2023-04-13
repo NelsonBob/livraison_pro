@@ -1,4 +1,6 @@
-package com.example.livraison.use_case.domain;
+package com.example.livraison.domain;
+
+import java.util.UUID;
 
 public class Colis {
     private String id;
@@ -16,6 +18,9 @@ public class Colis {
         this.weight = weight;
         this.clientId = clientId;
         this.isDelivered = false;
+        String codeValidation = UUID.randomUUID().toString(); // Génération d'un code de validation unique
+        this.code = codeValidation; // Affectation du code de validation au colis scanné
+
     }
     
     public String getOriginAddress() {

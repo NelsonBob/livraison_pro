@@ -1,4 +1,4 @@
-package com.example.livraison.use_case.domain;
+package com.example.livraison.domain;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,11 +15,8 @@ public class Livreur {
         this.colisRepository = colisRepository;
     }
 
-    public String scannerColis(Colis colis) {
-        String codeValidation = UUID.randomUUID().toString(); // Génération d'un code de validation unique
-        colis.setCode(codeValidation); // Affectation du code de validation au colis scanné
+    public void scannerColis(Colis colis) {
         colisRepository.saveColis(colis); // Ajout du colis à la liste des colis à livrer dans le repository
-        return codeValidation; // Retour du code de validation généré
     }
 
     public void livrerColis(Colis colis, Client client) throws ColisNotFoundException, ColisAlreadyDeliveredException {

@@ -3,7 +3,7 @@ package com.example.livraison.use_case.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.livraison.use_case.domain.Colis;
+import com.example.livraison.domain.Colis;
 
 public class ColisRepository {
 
@@ -26,5 +26,14 @@ public class ColisRepository {
 
     public List<Colis> getColisLivre() {
         return colisLivre;
+    }
+
+    public String getCodeByColisAndClientId(String colisId, String clientId) {
+        for (Colis colis : colisALivrer) {
+            if (colis.getId().equals(colisId) && colis.getClientId().equals(clientId)) {
+                return colis.getCode();
+            }
+        }
+        return null;
     }
 }
