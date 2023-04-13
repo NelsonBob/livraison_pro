@@ -21,6 +21,13 @@ public class LivraisonColis {
     // le colis est livré au client
     // le client effectue une notation
 
+    private ClientRepository clientRepository;
+
+    public LivraisonColis(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
+
 
     public List<Colis> livrerColis(Livreur livreur, List<Colis> listColis) throws ColisNotFoundException, ClientNotFoundException, ColisAlreadyDeliveredException {
 
@@ -37,13 +44,13 @@ public class LivraisonColis {
         // Les codes des colis sont envoyés au client
         for (Colis colis : colisScannes) {
             String clientId = colis.getClientId();
-            Client client = ClientRepository.getClientById(clientId);
+            Client client = clientRepository.getClientById(clientId);
             client.recevoirCode(colis.getId(),colis.getCode());
         }
     
         // Le livreur vérifie le code et livre les colis, puis envoie une notification au client
         for (Colis colis : colisScannes) {
-            Client client = ClientRepository.getClientById(colis.getClientId());
+            Client client = clientRepository.getClientById(colis.getClientId());
             
             /*String codeValidationClient = colisRepository.getCodeByColisAndClientId(colis.getId(), client.getId());
 
