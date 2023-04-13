@@ -6,12 +6,14 @@ public class Colis {
     private String destinationAddress;
     private double weight;
     private String code;
+    private String clientId;
     
-    public Colis(String id, String originAddress, String destinationAddress, double weight) {
+    public Colis(String id, String originAddress, String destinationAddress, double weight, String clientId) {
         this.id = id;
         this.originAddress = originAddress;
         this.destinationAddress = destinationAddress;
         this.weight = weight;
+        this.clientId = clientId;
     }
     
     public String getOriginAddress() {
@@ -48,6 +50,11 @@ public class Colis {
 
     public String getId() {
         return this.id;
+    }
+
+
+    public String getClientId() {
+        return this.clientId;
     }
 
 }

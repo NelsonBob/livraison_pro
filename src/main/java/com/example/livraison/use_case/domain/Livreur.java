@@ -22,7 +22,9 @@ public class Livreur {
     }
 
     public void livrerColis(Colis colis, Client client) throws ColisNotFoundException {
+        
         boolean colisEstALivrer = colisRepository.getColisALivrer().contains(colis);
+
         if (colisEstALivrer == false) {
             throw new ColisNotFoundException("Le colis n'existe pas dans les colis à livrer");
         }
