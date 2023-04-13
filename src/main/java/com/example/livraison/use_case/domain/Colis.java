@@ -7,6 +7,7 @@ public class Colis {
     private double weight;
     private String code;
     private String clientId;
+    private boolean isDelivered;
     
     public Colis(String id, String originAddress, String destinationAddress, double weight, String clientId) {
         this.id = id;
@@ -14,6 +15,7 @@ public class Colis {
         this.destinationAddress = destinationAddress;
         this.weight = weight;
         this.clientId = clientId;
+        this.isDelivered = false;
     }
     
     public String getOriginAddress() {
@@ -55,6 +57,14 @@ public class Colis {
 
     public String getClientId() {
         return this.clientId;
+    }
+
+    public void setDelivered() {
+        this.isDelivered = true;
+    }
+
+    public boolean getDelivered() {
+        return this.isDelivered;
     }
 
 }

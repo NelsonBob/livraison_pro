@@ -7,6 +7,7 @@ import com.example.livraison.use_case.domain.Client;
 import com.example.livraison.use_case.domain.Colis;
 import com.example.livraison.use_case.domain.Livreur;
 import com.example.livraison.use_case.exeption.ClientNotFoundException;
+import com.example.livraison.use_case.exeption.ColisAlreadyDeliveredException;
 import com.example.livraison.use_case.exeption.ColisNotFoundException;
 import com.example.livraison.use_case.repository.ClientRepository;
 import com.example.livraison.use_case.repository.ColisRepository;
@@ -21,7 +22,7 @@ public class LivraisonColis {
     // le client effectue une notation
 
 
-    public void livrerColis(Livreur livreur, List<Colis> listColis) throws ColisNotFoundException, ClientNotFoundException {
+    public List<Colis> livrerColis(Livreur livreur, List<Colis> listColis) throws ColisNotFoundException, ClientNotFoundException, ColisAlreadyDeliveredException {
 
 
         // Le livreur scanner les colis et les ajoute à la liste de livraison de la journée
@@ -48,6 +49,8 @@ public class LivraisonColis {
                 livreur.livrerColis(colis, client);
             }
         }
+
+        return colisRepository.getColisLivre();
     }
     
 
