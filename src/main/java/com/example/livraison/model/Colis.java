@@ -1,4 +1,4 @@
-package com.example.livraison.domain;
+package com.example.livraison.model;
 
 import java.util.UUID;
 
@@ -10,7 +10,7 @@ public class Colis {
     private String code;
     private String clientId;
     private boolean isDelivered;
-    
+
     public Colis(String id, String originAddress, String destinationAddress, double weight, String clientId) {
         this.id = id;
         this.originAddress = originAddress;
@@ -22,27 +22,27 @@ public class Colis {
         this.code = codeValidation; // Affectation du code de validation au colis scanné
 
     }
-    
+
     public String getOriginAddress() {
         return originAddress;
     }
-    
+
     public void setOriginAddress(String originAddress) {
         this.originAddress = originAddress;
     }
-    
+
     public String getDestinationAddress() {
         return destinationAddress;
     }
-    
+
     public void setDestinationAddress(String destinationAddress) {
         this.destinationAddress = destinationAddress;
     }
-    
+
     public double getWeight() {
         return weight;
     }
-    
+
     public void setWeight(double weight) {
         this.weight = weight;
     }

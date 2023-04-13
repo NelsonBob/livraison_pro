@@ -1,9 +1,4 @@
-package com.example.livraison.domain;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import com.example.livraison.use_case.exeption.ColisNotFoundException;
+package com.example.livraison.model;
 
 public class Client {
 
@@ -13,7 +8,7 @@ public class Client {
         private String email;
         private String telephone;
         //private Map<String, String> codes; // une map avec l'id du colis et le code de validation
-    
+
         public Client(String id, String nom, String prenom, String email, String telephone) {
             this.id = id;
             this.nom = nom;
@@ -22,7 +17,7 @@ public class Client {
             this.telephone = telephone;
             //this.codes = new HashMap<>();
         }
-    
+
          public void recevoirCode(String idColis, String code) {
           //  this.codes.put(idColis, code);
             System.out.println("Code de livraison reçu pour le colis " + idColis + " : " + code);

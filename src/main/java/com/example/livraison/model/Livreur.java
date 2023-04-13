@@ -1,7 +1,6 @@
-package com.example.livraison.domain;
+package com.example.livraison.model;
 
 import java.util.List;
-import java.util.UUID;
 
 import com.example.livraison.use_case.exeption.ColisAlreadyDeliveredException;
 import com.example.livraison.use_case.exeption.ColisNotFoundException;
