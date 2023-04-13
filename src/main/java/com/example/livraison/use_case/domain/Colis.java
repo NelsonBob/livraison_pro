@@ -1,13 +1,15 @@
-package com.example.livraison.domain;
+package com.example.livraison.use_case.domain;
 
 public class Colis {
+    private String id;
     private String originAddress;
     private String destinationAddress;
     private double weight;
-    private int trackingNumber;
+    private String code;
     
-    public Colis(String originAddress, String destinationAddress, double weight, int trackingNumber) {
-        this.trackingNumber = trackingNumber;
+    public Colis(String id, String originAddress, String destinationAddress, double weight, String code) {
+        this.id = id;
+        this.code = code;
         this.originAddress = originAddress;
         this.destinationAddress = destinationAddress;
         this.weight = weight;
@@ -37,12 +39,16 @@ public class Colis {
         this.weight = weight;
     }
 
-    public int getTrackingNumber() {
-        return trackingNumber;
+    public String getCode() {
+        return this.code;
     }
 
-    public void setTrackingNumber(int trackingNumber) {
-        this.trackingNumber = trackingNumber;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
 }
