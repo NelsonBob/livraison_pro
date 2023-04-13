@@ -1,11 +1,12 @@
-package main.java.com.example.livraison;
+package com.example.livraison.domain;
 
 public class Colis {
     private String originAddress;
     private String destinationAddress;
     private double weight;
+    private int trackingNumber;
     
-    public Colis(String originAddress, String destinationAddress, double weight, Int trackingNumber) {
+    public Colis(String originAddress, String destinationAddress, double weight, int trackingNumber) {
         this.trackingNumber = trackingNumber;
         this.originAddress = originAddress;
         this.destinationAddress = destinationAddress;
@@ -40,7 +41,7 @@ public class Colis {
         return trackingNumber;
     }
 
-    public int setTrackingNumber(int trackingNumber) {
+    public void setTrackingNumber(int trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
 

@@ -1,9 +1,8 @@
-package main.java.com.example.livraison.application;
+package com.example.livraison.application;
 
-import java.util.Random;
 
-import main.java.com.example.livraison.domain.Colis;
-import main.java.com.example.livraison.infrastructure.ColisRepository;
+import com.example.livraison.domain.Colis;
+import com.example.livraison.infrastructure.ColisRepository;
 
 public class CreateColis {
     private final ColisRepository colisRepository;

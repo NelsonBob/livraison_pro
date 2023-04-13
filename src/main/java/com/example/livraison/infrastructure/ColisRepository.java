@@ -1,8 +1,8 @@
-package main.java.com.example.livraison.infrastructure;
+package com.example.livraison.infrastructure;
 
 import java.util.List;
 
-import main.java.com.example.livraison.domain.Colis;
+import com.example.livraison.domain.Colis;
 
 public interface ColisRepository {
     void save(Colis colis);
