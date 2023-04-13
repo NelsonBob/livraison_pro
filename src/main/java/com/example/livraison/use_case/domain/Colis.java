@@ -7,9 +7,8 @@ public class Colis {
     private double weight;
     private String code;
     
-    public Colis(String id, String originAddress, String destinationAddress, double weight, String code) {
+    public Colis(String id, String originAddress, String destinationAddress, double weight) {
         this.id = id;
-        this.code = code;
         this.originAddress = originAddress;
         this.destinationAddress = destinationAddress;
         this.weight = weight;
