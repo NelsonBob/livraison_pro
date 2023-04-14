@@ -26,8 +26,10 @@ public class Colis {
         this.idClient = idClient;
         this.dateCreation = LocalDate.now();
         this.dateLivraisonEstimee = dateLivraisonEstimee;
-        this.etapesLivraison = new ArrayList<>();
-    }
+        List<EtapeLivraison> etapesLivraison = new ArrayList<>();
+        etapesLivraison.add(new EtapeLivraison("Le colis a été créé", this.dateCreation));
+
+        this.livreur = null;    }
 
     public String getId() {
         return id;
@@ -80,11 +82,6 @@ public class Colis {
     public List<EtapeLivraison> getEtapesLivraison() {
         return etapesLivraison;
     }
-
-    public void ajouterEtapeLivraison(EtapeLivraison etape) {
-        etapesLivraison.add(etape);
-    }
-
     public void livrer(String code) throws Exception {
         if (!this.codeVerification.equals(code)) {
             throw new Exception("Le code de vérification est incorrect");
@@ -106,6 +103,8 @@ public class Colis {
         if (this.statutLivraison != StatutLivraison.EN_ATTENTE) {
             throw new Exception("Le colis a déjà été pris en charge et ne peut plus être modifié");
         }
+
+        etapesLivraison.add(new EtapeLivraison("L'adresse a été modifiée", LocalDate.now()));
 
         this.adresseLivraison = nouvelleAdresse;
     }
