@@ -27,6 +27,11 @@ public class LivraisonColis {
     private LivraisonRepository livraisonRepository;
     private ClientRepository clientRepository;
 
+    public LivraisonColis(LivraisonRepository livraisonRepository, ClientRepository clientRepository) {
+        this.livraisonRepository = livraisonRepository;
+        this.clientRepository = clientRepository;
+    }
+
     public List<Colis> livrerColis(Livreur livreur, List<LivraisonAggregate> listLivraisonAggregate) throws ColisNotFoundException, ClientNotFoundException, ColisAlreadyDeliveredException {
 
 
@@ -34,7 +39,7 @@ public class LivraisonColis {
         ColisRepository colisRepository = new ColisRepository();
         for (LivraisonAggregate livraisonAggregate : listLivraisonAggregate) {
             livreur.scannerColis(livraisonAggregate);
-            LivraisonRepository.save(livraisonAggregate);
+            livraisonRepository.save(livraisonAggregate);
         }
 
         List<Colis> colisScannes = colisRepository.getColisALivrer();

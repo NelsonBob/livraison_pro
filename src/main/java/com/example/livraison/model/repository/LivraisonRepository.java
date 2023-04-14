@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface LivraisonRepository {
-    void save(LivraisonAggregate livraisonAggregate)
+    void save(LivraisonAggregate livraisonAggregate);
     void delete(LivraisonAggregate livraisonAggregate);
     LivraisonAggregate findById(String livraisonId);
     List<LivraisonAggregate> findBySender(String sender);

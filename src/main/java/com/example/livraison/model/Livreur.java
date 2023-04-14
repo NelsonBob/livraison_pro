@@ -19,7 +19,7 @@ public class Livreur {
     }
 
     public void scannerColis(LivraisonAggregate livraisonAggregate) {
-        LivraisonRepository.save(livraisonAggregate); // Ajout du colis à la liste des colis à livrer dans le repository
+        livraisonRepository.save(livraisonAggregate); // Ajout du colis à la liste des colis à livrer dans le repository
     }
 
     public void livrerColis(LivraisonAggregate livraisonAggregate, Client client) throws ColisNotFoundException, ColisAlreadyDeliveredException {

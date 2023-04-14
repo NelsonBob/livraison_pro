@@ -20,6 +20,7 @@ public class LivraisonSucceecedTest {
 
     @Test
     void testMarkAsDelivered() {
+
         livraisonAggretate.markAsDelivered();
 
         assertEquals(DeliveryStatus.DELIVERED, livraisonAggretate.getDeliveryStatus());
