@@ -7,12 +7,26 @@ public class Colis {
     private String id;
     private double weight;
     private String code;
-    private boolean isDelivered;
+    private String idClient;
 
-    public Colis(String id, double weight) {
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
+    public String getClientId() {
+        return idClient;
+    }
+
+    public void setIdClient(String idClient) {
+        this.idClient = idClient;
+    }
+
+
+    public Colis(String id, double weight, String idClient) {
         this.id = id;
         this.weight = weight;
-        this.isDelivered = false;
+        this.idClient = idClient;
         String codeValidation = UUID.randomUUID().toString(); // Génération d'un code de validation unique
         this.code = codeValidation; // Affectation du code de validation au colis scanné
 
@@ -38,12 +52,5 @@ public class Colis {
         return this.id;
     }
 
-    public void setDelivered() {
-        this.isDelivered = true;
-    }
-
-    public boolean getDelivered() {
-        return this.isDelivered;
-    }
 
 }

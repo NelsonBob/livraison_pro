@@ -1,4 +1,4 @@
-package com.example.livraison.use_case.repository;
+package com.example.livraison.model.repository;
 
 import java.util.ArrayList;
 import java.util.List;
