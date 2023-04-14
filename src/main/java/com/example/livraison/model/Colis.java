@@ -1,75 +1,113 @@
 package com.example.livraison.model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Colis {
     private String id;
-    private String originAddress;
-    private String destinationAddress;
-    private double weight;
-    private String code;
-    private String clientId;
-    private boolean isDelivered;
+    private String destinataire;
+    private String adresseLivraison;
+    private String codeVerification;
+    private StatutLivraison statutLivraison;
+    private String idClient;
+    private LocalDate dateCreation;
+    private LocalDate dateLivraisonEstimee;
+    private Livreur livreur;
+    private List<EtapeLivraison> etapesLivraison;
 
-    public Colis(String id, String originAddress, String destinationAddress, double weight, String clientId) {
-        this.id = id;
-        this.originAddress = originAddress;
-        this.destinationAddress = destinationAddress;
-        this.weight = weight;
-        this.clientId = clientId;
-        this.isDelivered = false;
-        String codeValidation = UUID.randomUUID().toString(); // Génération d'un code de validation unique
-        this.code = codeValidation; // Affectation du code de validation au colis scanné
-
-    }
-
-    public String getOriginAddress() {
-        return originAddress;
-    }
-
-    public void setOriginAddress(String originAddress) {
-        this.originAddress = originAddress;
-    }
-
-    public String getDestinationAddress() {
-        return destinationAddress;
-    }
-
-    public void setDestinationAddress(String destinationAddress) {
-        this.destinationAddress = destinationAddress;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public String getCode() {
-        return this.code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public Colis(String destinataire, String adresseLivraison, String idClient, LocalDate dateLivraisonEstimee) {
+        this.id = UUID.randomUUID().toString();
+        this.destinataire = destinataire;
+        this.adresseLivraison = adresseLivraison;
+        this.codeVerification = UUID.randomUUID().toString();
+        this.statutLivraison = StatutLivraison.EN_ATTENTE;
+        this.idClient = idClient;
+        this.dateCreation = LocalDate.now();
+        this.dateLivraisonEstimee = dateLivraisonEstimee;
+        this.etapesLivraison = new ArrayList<>();
     }
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
-
-    public String getClientId() {
-        return this.clientId;
+    public String getDestinataire() {
+        return destinataire;
     }
 
-    public void setDelivered() {
-        this.isDelivered = true;
+    public void setDestinataire(String destinataire) {
+        this.destinataire = destinataire;
     }
 
-    public boolean getDelivered() {
-        return this.isDelivered;
+    public String getAdresseLivraison() {
+        return adresseLivraison;
+    }
+
+    public void setAdresseLivraison(String adresseLivraison) {
+        this.adresseLivraison = adresseLivraison;
+    }
+
+    public String getCodeVerification() {
+        return codeVerification;
+    }
+
+    public StatutLivraison getStatutLivraison() {
+        return statutLivraison;
+    }
+
+    public String getIdClient() {
+        return idClient;
+    }
+
+    public LocalDate getDateCreation() {
+        return dateCreation;
+    }
+
+    public LocalDate getDateLivraisonEstimee() {
+        return dateLivraisonEstimee;
+    }
+
+    public Livreur getLivreur() {
+        return livreur;
+    }
+
+    public void setLivreur(Livreur livreur) {
+        this.livreur = livreur;
+    }
+
+    public List<EtapeLivraison> getEtapesLivraison() {
+        return etapesLivraison;
+    }
+
+    public void ajouterEtapeLivraison(EtapeLivraison etape) {
+        etapesLivraison.add(etape);
+    }
+
+    public void livrer(String code) throws Exception {
+        if (!this.codeVerification.equals(code)) {
+            throw new Exception("Le code de vérification est incorrect");
+        }
+        if (this.statutLivraison == StatutLivraison.LIVRE) {
+            throw new Exception("Le colis a déjà été livré");
+        }
+        if (this.livreur == null) {
+            throw new Exception("Le colis n'a pas encore été pris en charge par un livreur");
+        }
+        if (LocalDate.now().isAfter(this.dateLivraisonEstimee)) {
+            throw new Exception("Le colis est en retard");
+        }
+
+        this.statutLivraison = StatutLivraison.LIVRE;
+    }
+
+    public void modifierAdresseLivraison(String nouvelleAdresse) throws Exception {
+        if (this.statutLivraison != StatutLivraison.EN_ATTENTE) {
+            throw new Exception("Le colis a déjà été pris en charge et ne peut plus être modifié");
+        }
+
+        this.adresseLivraison = nouvelleAdresse;
     }
 
 }
