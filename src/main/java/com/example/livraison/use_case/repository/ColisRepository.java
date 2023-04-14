@@ -30,8 +30,8 @@ public class ColisRepository {
 
     public String getCodeByColisAndClientId(String colisId, String clientId) {
         for (Colis colis : colisALivrer) {
-            if (colis.getId().equals(colisId) && colis.getClientId().equals(clientId)) {
-                return colis.getCode();
+            if (colis.getId().equals(colisId) && colis.getIdClient().equals(clientId)) {
+                return colis.getCodeVerification();
             }
         }
         return null;
