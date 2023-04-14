@@ -42,9 +42,9 @@ public class LivraisonColis {
 
         // Les codes des colis sont envoyés au client
         for (Colis colis : colisScannes) {
-            String clientId = colis.getIdClient();
+            String clientId = colis.getClientId();
             Client client = clientRepository.getClientById(clientId);
-            client.recevoirCode(colis.getId(),colis.getCodeVerification());
+            client.recevoirCode(colis.getId(),colis.getCode());
         }
 
         // Le livreur vérifie le code et livre les colis, puis envoie une notification au client
